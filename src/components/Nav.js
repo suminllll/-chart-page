@@ -1,11 +1,14 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router';
 import styled from 'styled-components';
 
 const Nav = () => {
   const [changeColor, setChangeColor] = useState(false);
+  const navigate = useNavigate();
 
-  const handleColor = () => {
+  const handleColor = id => {
     setChangeColor(!changeColor);
+    navigate(`/${id}`);
   };
 
   return (
@@ -18,10 +21,18 @@ const Nav = () => {
       </LogoBox>
       {/* 버튼 */}
       <>
-        <LNB_MeNU_A onClick={handleColor} changeColor={changeColor}>
+        <LNB_MeNU_A
+          id="project"
+          onClick={() => handleColor('project')}
+          changeColor={changeColor}
+        >
           <Menu_Name>Project List</Menu_Name>
         </LNB_MeNU_A>
-        <LNB_MeNU_B onClick={handleColor} changeColor={changeColor}>
+        <LNB_MeNU_B
+          id="chart"
+          onClick={() => handleColor('chart')}
+          changeColor={changeColor}
+        >
           <Menu_Name>Chart</Menu_Name>
         </LNB_MeNU_B>
       </>

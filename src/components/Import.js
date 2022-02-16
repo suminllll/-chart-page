@@ -9,6 +9,7 @@ const Import = () => {
   const [inputData, setInputData] = useState([]); //alert input에서 입력된 데이터를 갱신해줄 state
   let values = []; //import button을 클릭하고 뜨는 alert input의 값을 담을 변수
 
+  //현재날짜 구하기
   const now = new Date();
   const year = now.getFullYear();
   const month = now.getMonth();
@@ -26,6 +27,15 @@ const Import = () => {
       });
   }, []);
 
+  useEffect(() => {
+    return () => {
+      onRemove();
+    };
+  }, [onRemove]);
+
+  const onRemove = id => {
+    setData(data.filter(list => list !== id));
+  };
   //import button 누르면 실행되는 함수, alert 라이브러리 사용
   const handleAlert = e => {
     swal({
@@ -50,11 +60,12 @@ const Import = () => {
       }
     });
   };
-  useEffect(data => {
-    console.log(data);
-    // setData(data.filter(list => list !== id));
-    // console.log(data);
-  }, []);
+
+  // useEffect(data => {
+  //console.log(data);
+  // setData(data.filter(list => list !== id));
+  // console.log(data);
+  // }, []);
   // const onRemove = id => {
   //   console.log(id);
   //   setData(data.filter(list => list !== id));
@@ -109,7 +120,7 @@ const Import = () => {
                         </TbodyTd>
                         <TbodyTd>{today}</TbodyTd>
                         <TbodyTd style={{ width: '20px' }}>
-                          <TbodyBtn>Delete</TbodyBtn>
+                          <TbodyBtn onClick={onRemove}>Delete</TbodyBtn>
                         </TbodyTd>
                       </tr>
                     );

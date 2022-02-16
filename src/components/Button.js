@@ -15,9 +15,7 @@ export const TwoButton = ({
             <File onChange={handleCheck} />
           </ButtonText>
         </>
-        <>
-          <ButtonText>{buttonTextSecond}</ButtonText>
-        </>
+        <>{buttonTextSecond && <ButtonText>{buttonTextSecond}</ButtonText>}</>
       </ButtonFrame>
     </ButtonWrap>
   );
