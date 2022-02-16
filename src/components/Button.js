@@ -32,7 +32,7 @@ const ButtonWrap = styled.div`
 const ButtonFrame = styled.div`
   display: flex;
   text-align: center;
-  margin-right: 10.5%;
+  margin-right: 112px;
 `;
 
 const File = styled.input.attrs({
@@ -46,7 +46,7 @@ const ButtonText = styled.label`
   display: inline-block;
   width: 8.4vw;
   height: 40px;
-  padding-top: 5%;
+  padding-top: 11.5px;
   margin-right: 29px;
   border-radius: 2px;
   cursor: pointer;
@@ -59,7 +59,7 @@ export const OneButton = ({ buttonText }) => {
   return (
     <ButtonFrame
       style={{
-        marginRight: '13.2%',
+        marginRight: '141px',
       }}
     >
       <OneButtonText>{buttonText}</OneButtonText>
@@ -68,6 +68,7 @@ export const OneButton = ({ buttonText }) => {
 };
 
 const OneButtonText = styled.button`
+  text-align: center;
   width: 8.4vw;
   height: 40px;
   border-style: none;

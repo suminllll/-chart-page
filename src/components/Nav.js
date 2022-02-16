@@ -30,7 +30,7 @@ const Nav = () => {
 
 const Wrapper = styled.nav`
   position: fixed;
-  width: 20%;
+  width: 265px;
   height: 100%;
   left: 0;
   background-color: #202020;
