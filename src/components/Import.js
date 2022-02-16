@@ -1,10 +1,23 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { OneButton } from '../components/Button';
+import swal from 'sweetalert';
+import '../components/Alert.css';
 
 const Import = () => {
-  const [data, setData] = useState([]);
+  const [data, setData] = useState([]); //Project_list.json에서 데이터를 담을 state
+  const [inputData, setInputData] = useState([]); //alert input에서 입력된 데이터를 갱신해줄 state
+  let values = []; //import button을 클릭하고 뜨는 alert input의 값을 담을 변수
 
+  const now = new Date();
+  const year = now.getFullYear();
+  const month = now.getMonth();
+  const day = now.getDate();
+  const hours = now.getHours();
+  const min = now.getMinutes();
+  let today = `${year}.${month}.${day} ${hours}:${min}`;
+
+  //Project_list.json에서 데이터를 가져옴
   useEffect(() => {
     fetch('data/Project_list.json')
       .then(res => res.json())
@@ -13,10 +26,46 @@ const Import = () => {
       });
   }, []);
 
+  //import button 누르면 실행되는 함수, alert 라이브러리 사용
+  const handleAlert = e => {
+    swal({
+      title: 'Service name',
+      content: 'input',
+      buttons: ['Cancel', 'Add'],
+    }).then(result => {
+      const lower = result.toLowerCase();
+
+      //값이 소문자이거나 숫자이면 값을 추가함
+      if (result === lower || result >= 0) {
+        //inputData에 입력된 값으로 갱신해준다
+        setInputData(values.concat(result));
+      } else {
+        swal({
+          //라이브러리라서 위치 이동이 어려워 있는 그대로 사용
+          title: 'Service name',
+          content: 'input',
+          buttons: ['Cancel', 'Add'],
+          text: 'only lowercase letters and numbers allowed.',
+        });
+      }
+    });
+  };
+  useEffect(data => {
+    console.log(data);
+    // setData(data.filter(list => list !== id));
+    // console.log(data);
+  }, []);
+  // const onRemove = id => {
+  //   console.log(id);
+  //   setData(data.filter(list => list !== id));
+  //   console.log(data);
+  // };
+
   return (
     <>
       {data.map(data => {
         const service = data.service_list;
+
         return (
           <Wrapper key={data.project_name}>
             <ProWrap>
@@ -24,7 +73,8 @@ const Import = () => {
                 <Pro>{data.project_name}</Pro>
                 <Creator>Creator:{data.creator}</Creator>
               </div>
-              <OneButton buttonText="Add service" />
+              <OneButton buttonText="Add service" handleAlert={handleAlert} />
+              {/* <Alert /> */}
             </ProWrap>
 
             <BoardWrap>
@@ -44,6 +94,20 @@ const Import = () => {
                           {service.service_name}
                         </TbodyTd>
                         <TbodyTd>{service.creation_date}</TbodyTd>
+                        <TbodyTd style={{ width: '20px' }}>
+                          <TbodyBtn>Delete</TbodyBtn>
+                        </TbodyTd>
+                      </tr>
+                    );
+                  })}
+
+                  {inputData.map((value, index) => {
+                    return (
+                      <tr key={index}>
+                        <TbodyTd style={{ paddingLeft: '134.5px' }}>
+                          {value}
+                        </TbodyTd>
+                        <TbodyTd>{today}</TbodyTd>
                         <TbodyTd style={{ width: '20px' }}>
                           <TbodyBtn>Delete</TbodyBtn>
                         </TbodyTd>
@@ -90,7 +154,6 @@ const Creator = styled.span`
 const BoardWrap = styled.div`
   height: 322px;
   margin-right: 9.8%;
-  border: 1px solid lightblue;
 `;
 
 const Table = styled.table`

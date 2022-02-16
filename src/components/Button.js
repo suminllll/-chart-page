@@ -55,9 +55,10 @@ const ButtonText = styled.label`
   font-family: ${({ theme }) => theme.font};
 `;
 
-export const OneButton = ({ buttonText }) => {
+export const OneButton = ({ buttonText, handleAlert }) => {
   return (
     <ButtonFrame
+      onClick={handleAlert}
       style={{
         marginRight: '141px',
       }}

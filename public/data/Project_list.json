@@ -5,8 +5,7 @@
       "creator": "user1",
       "service_list": [
         { "service_name": "svc1", "creation_date": 1644620400 },
-        { "service_name": "svc2", "creation_date": 1644624000 },
-        { "service_name": "svc3", "creation_date": 1644627600 }
+        { "service_name": "svc2", "creation_date": 1644624000 }
       ]
     },
     {

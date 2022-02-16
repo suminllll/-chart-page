@@ -1,0 +1,16 @@
+.swal-title {
+  text-align: left;
+  margin-left: 10px;
+}
+
+.swal-text {
+  color: #f30b0b;
+}
+
+.swal-button {
+  width: 100px;
+}
+
+.swal-button--confirm {
+  background-color: #217eff;
+}

@@ -7,6 +7,7 @@ const Nav = () => {
   const handleColor = () => {
     setChangeColor(!changeColor);
   };
+
   return (
     <Wrapper>
       {/* 로고 */}

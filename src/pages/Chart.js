@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 const Chart = () => {
-  return <div></div>;
+  return <div>sdfsdf</div>;
 };
 
 export default Chart;
