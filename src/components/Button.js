@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
+// 두개인 버튼인데 하나는 조건부 렌더링으로 값이 있을때만 보여진다
 export const TwoButton = ({
   buttonTextFirst,
   buttonTextSecond,
@@ -53,6 +54,7 @@ const ButtonText = styled.label`
   font-family: ${({ theme }) => theme.font};
 `;
 
+//하나인 버튼
 export const OneButton = ({ buttonText, handleAlert }) => {
   return (
     <ButtonFrame

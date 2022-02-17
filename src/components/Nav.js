@@ -3,12 +3,13 @@ import { useNavigate } from 'react-router';
 import styled from 'styled-components';
 
 const Nav = () => {
-  const [changeColor, setChangeColor] = useState(false);
-  const navigate = useNavigate();
+  const [inputStatus, setInputStatus] = useState(''); //메뉴 클릭시 해당 아이디로 갱신해주는 state
+  const navigate = useNavigate(); //메뉴 클릭시 해당 페이지로 전환
 
+  //메뉴를 클릭하면 실행되는 함수
   const handleColor = id => {
-    setChangeColor(!changeColor);
-    navigate(`/${id}`);
+    setInputStatus(id); //inputStatus가 클릭한 id로 갱신된다
+    navigate(`/${id}`); //메뉴 클릭시 받아온 id 페이지로 전환
   };
 
   return (
@@ -21,17 +22,18 @@ const Nav = () => {
       </LogoBox>
       {/* 버튼 */}
       <>
+        {/* changeColor가 참이 되면 스타일 컴포넌트의 조건문에서 true가 되면서 색깔이 바뀜 */}
         <LNB_MeNU_A
           id="project"
           onClick={() => handleColor('project')}
-          changeColor={changeColor}
+          changeColor={inputStatus === 'project'}
         >
           <Menu_Name>Project List</Menu_Name>
         </LNB_MeNU_A>
         <LNB_MeNU_B
           id="chart"
           onClick={() => handleColor('chart')}
-          changeColor={changeColor}
+          changeColor={inputStatus === 'chart'}
         >
           <Menu_Name>Chart</Menu_Name>
         </LNB_MeNU_B>
@@ -79,7 +81,7 @@ const Category = styled.div`
 
 const LNB_MeNU_A = styled(Category)`
   background-color: ${change =>
-    change.changeColor ? 'inherit' : 'rgba(44, 120, 255, 0.25)'};
+    change.changeColor ? 'rgba(44, 120, 255, 0.25)' : 'inherit'};
 `;
 
 const LNB_MeNU_B = styled(Category)`
