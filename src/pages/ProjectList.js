@@ -1,14 +1,15 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import styled from 'styled-components';
 import Title from '../components/Title';
 import { TwoButton } from '../components/Button';
 import Import from '../components/Import';
+// import { saveAs } from 'file-saver';
 import swal from 'sweetalert';
 import '../components/Alert.css';
 
 const ProjectList = () => {
   const [upload, setUpload] = useState(false); //json 파일이면 조건부 렌더링에서 true가 될 state
-  const [data, setData] = useState([]); //Project_list.json에서 데이터를 담을 state
+  const [data, setData] = useState([]); //Project_list.json에서 input 데이터를 담을 state
   const [inputData, setInputData] = useState([]); //alert input에서 입력된 데이터를 갱신해줄 state
   let values = []; //import button을 클릭하고 뜨는 alert input의 값을 담을 변수
 
@@ -57,6 +58,37 @@ const ProjectList = () => {
     });
   };
 
+  //파일 다운로드 하는 함수, onDownloadBtn에서 인수를 받아온다
+  const downloadFile = async ({ data, fileName, fileType }) => {
+    console.log(data);
+    //파일로 다운로드할 데이터로 Blob를 만든다 [Blob이란? (Binary Large Object, 블랍) 이미지, 사운드, 비디오와 같은 멀티미디어 데이터를 다룰 때 사용]
+    const blob = new Blob([data], { type: fileType });
+    // a태그를 생성하고 해당 요소에 클릭 이벤트를 보낸다
+    // 다운로드를 한다
+    const link = document.createElement('a');
+    link.download = fileName;
+    link.href = await URL.createObjectURL(blob);
+
+    const clickEvt = new MouseEvent('click', {
+      view: window,
+      bubbles: true,
+      cancelable: true,
+    });
+    link.dispatchEvent(clickEvt);
+    link.remove();
+  };
+
+  //버튼을 클릭하면 실행되는 함수
+  // data, fileName, fileType에 값을 담아 downloadFile의 인수로 보낸다
+  const onDownloadBtn = () => {
+    const name = 'project_list'; //파일명
+    downloadFile({
+      data: JSON.stringify(data),
+      fileName: `${name}.json`,
+      fileType: 'text/json',
+    });
+  };
+
   return (
     <Main>
       <Title titleText="Project list" />
@@ -64,10 +96,17 @@ const ProjectList = () => {
         buttonTextFirst="Import"
         buttonTextSecond="Export"
         handleCheck={handleCheck}
+        data={data}
+        onDownloadBtn={onDownloadBtn}
       />
       {!upload && <EmptyData>Have no data</EmptyData>}
       {upload && (
-        <Import data={data} handleAlert={handleAlert} inputData={inputData} />
+        <Import
+          className="import"
+          data={data}
+          handleAlert={handleAlert}
+          inputData={inputData}
+        />
       )}
     </Main>
   );

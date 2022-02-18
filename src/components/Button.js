@@ -6,6 +6,8 @@ export const TwoButton = ({
   buttonTextFirst,
   buttonTextSecond,
   handleCheck,
+  data,
+  onDownloadBtn,
 }) => {
   return (
     <ButtonWrap>
@@ -16,7 +18,13 @@ export const TwoButton = ({
             <File onChange={handleCheck} />
           </ButtonText>
         </>
-        <>{buttonTextSecond && <ButtonText>{buttonTextSecond}</ButtonText>}</>
+        <>
+          {buttonTextSecond && (
+            <ButtonText data={data} onClick={onDownloadBtn}>
+              {buttonTextSecond}
+            </ButtonText>
+          )}
+        </>
       </ButtonFrame>
     </ButtonWrap>
   );
@@ -37,6 +45,7 @@ const ButtonFrame = styled.div`
 const File = styled.input.attrs({
   id: 'file',
   type: 'file',
+  accept: '.json',
 })`
   display: none;
 `;
