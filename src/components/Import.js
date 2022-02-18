@@ -3,15 +3,7 @@ import styled from 'styled-components';
 import { OneButton } from '../components/Button';
 
 const Import = ({ data, onRemove, handleAlert, inputData }) => {
-  //현재날짜 구하기
-  const now = new Date();
-  const year = now.getFullYear();
-  const month = now.getMonth();
-  const day = now.getDate();
-  const hours = now.getHours();
-  const min = now.getMinutes();
-  let today = `${year}.${month}.${day} ${hours}:${min}`;
-
+  console.log(inputData);
   return (
     <>
       {/* 전체를 맵 돌림 */}
@@ -59,14 +51,15 @@ const Import = ({ data, onRemove, handleAlert, inputData }) => {
                       </tr>
                     );
                   })}
+
                   {/* 사용자가 추가할 게시물 */}
-                  {inputData.map((value, index) => {
+                  {inputData.map(user => {
                     return (
-                      <tr key={index}>
+                      <tr key={user.id}>
                         <TbodyTd style={{ paddingLeft: '134.5px' }}>
-                          {value}
+                          {user.service_name}
                         </TbodyTd>
-                        <TbodyTd>{today}</TbodyTd>
+                        <TbodyTd>{user.creation_date}</TbodyTd>
                         <TbodyTd style={{ width: '20px' }}>
                           <TbodyBtn>Delete</TbodyBtn>
                         </TbodyTd>

@@ -1,9 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import styled from 'styled-components';
 import Title from '../components/Title';
 import { TwoButton } from '../components/Button';
 import Import from '../components/Import';
-// import { saveAs } from 'file-saver';
 import swal from 'sweetalert';
 import '../components/Alert.css';
 
@@ -11,7 +10,24 @@ const ProjectList = () => {
   const [upload, setUpload] = useState(false); //json 파일이면 조건부 렌더링에서 true가 될 state
   const [data, setData] = useState([]); //Project_list.json에서 input 데이터를 담을 state
   const [inputData, setInputData] = useState([]); //alert input에서 입력된 데이터를 갱신해줄 state
-  let values = []; //import button을 클릭하고 뜨는 alert input의 값을 담을 변수
+
+  //현재날짜 구하기
+  const now = new Date();
+  const year = now.getFullYear();
+  const month = now.getMonth();
+  const day = now.getDate();
+  const hours = now.getHours();
+  const min = now.getMinutes();
+  let today = `${year}.${month}.${day} ${hours}:${min}`;
+
+  //import button을 클릭하고 뜨는 alert input의 값을 담을 state
+  const [inputs, setInputs] = useState({
+    service_name: '',
+  });
+
+  const { service_name } = inputs;
+
+  const nextId = useRef(0);
 
   //Project_list.json에서 데이터를 가져옴
   useEffect(() => {
@@ -34,7 +50,7 @@ const ProjectList = () => {
   };
 
   //import button 누르면 실행되는 함수, alert 라이브러리 사용
-  const handleAlert = () => {
+  const handleAlert = inputs => {
     swal({
       title: 'Service name',
       content: 'input',
@@ -45,8 +61,21 @@ const ProjectList = () => {
 
       //값이 소문자이거나 숫자이면 값을 추가함
       if (result === lower || num) {
-        //inputData에 입력된 값으로 갱신해준다
-        setInputData(values.concat(result));
+        //inputs에 입력된 값으로 갱신해준다
+        setInputs({
+          service_name: result,
+        });
+
+        //user에 추가할 내용을 기재하고
+        const user = {
+          id: nextId.current,
+          service_name,
+          creation_date: today,
+        };
+        //inputData를 복사하고 user를 추가한다
+        setInputData([...inputData, user]);
+
+        nextId.current += 1; //id에 +1을 더해줌
       } else {
         swal({
           //라이브러리라서 위치 이동이 어려워 있는 그대로 사용
@@ -61,7 +90,6 @@ const ProjectList = () => {
 
   //파일 다운로드 하는 함수, onDownloadBtn에서 인수를 받아온다
   const downloadFile = async ({ data, fileName, fileType }) => {
-    console.log(data);
     //파일로 다운로드할 데이터로 Blob를 만든다 [Blob이란? (Binary Large Object, 블랍) 이미지, 사운드, 비디오와 같은 멀티미디어 데이터를 다룰 때 사용]
     const blob = new Blob([data], { type: fileType });
     // a태그를 생성하고 해당 요소에 클릭 이벤트를 보낸다

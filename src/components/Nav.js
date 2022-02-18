@@ -16,9 +16,7 @@ const Nav = () => {
     <Wrapper>
       {/* 로고 */}
       <LogoBox>
-        <ImgBox>
-          <Img />
-        </ImgBox>
+        <ImgBox>{/* <Img /> */}</ImgBox>
       </LogoBox>
       {/* 버튼 */}
       <>
