@@ -45,7 +45,6 @@ const Chart = () => {
           {
             name: '',
             data: data[0].data,
-            // data: data,
           },
         ],
       });
@@ -80,7 +79,6 @@ const Chart = () => {
           {
             name: '',
             data: data[1].data,
-            // data: data,
           },
         ],
       });

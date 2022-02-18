@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import Title from '../components/Title';
 import { TwoButton } from '../components/Button';
@@ -34,16 +34,17 @@ const ProjectList = () => {
   };
 
   //import button 누르면 실행되는 함수, alert 라이브러리 사용
-  const handleAlert = e => {
+  const handleAlert = () => {
     swal({
       title: 'Service name',
       content: 'input',
       buttons: ['Cancel', 'Add'],
     }).then(result => {
       const lower = result.toLowerCase();
+      const num = result >= 0;
 
       //값이 소문자이거나 숫자이면 값을 추가함
-      if (result === lower || result >= 0) {
+      if (result === lower || num) {
         //inputData에 입력된 값으로 갱신해준다
         setInputData(values.concat(result));
       } else {
