@@ -7,10 +7,6 @@ import swal from 'sweetalert';
 import '../components/Alert.css';
 
 const ProjectList = () => {
-  const [upload, setUpload] = useState(false); //json 파일이면 조건부 렌더링에서 true가 될 state
-  const [data, setData] = useState([]); //Project_list.json에서 input 데이터를 담을 state
-  const [inputData, setInputData] = useState([]); //alert input에서 입력된 데이터를 갱신해줄 state
-
   //현재날짜 구하기
   const now = new Date();
   const year = now.getFullYear();
@@ -20,6 +16,10 @@ const ProjectList = () => {
   const min = now.getMinutes();
   let today = `${year}.${month}.${day} ${hours}:${min}`;
 
+  const [upload, setUpload] = useState(false); //json 파일이면 조건부 렌더링에서 true가 될 state
+  const [data, setData] = useState([]); //Project_list.json에서 input 데이터를 담을 state
+  const [inputData, setInputData] = useState([]); //alert input에서 입력된 데이터를 갱신해줄 state
+  const [check, setCheck] = useState(false); //handleAlert함수에서 조건에 만족하면 true로 바꿀 state
   //import button을 클릭하고 뜨는 alert input의 값을 담을 state
   const [inputs, setInputs] = useState({
     service_name: '',
@@ -49,8 +49,23 @@ const ProjectList = () => {
     if (values) setUpload(!upload);
   };
 
+  //게시물을 추가함
+  useEffect(() => {
+    if (check && inputs) {
+      //user에 추가할 내용을 기재하고
+      const user = {
+        id: nextId.current,
+        service_name,
+        creation_date: today,
+      };
+      //inputData를 복사하고 user를 추가한다
+      setInputData([...inputData, user]);
+      nextId.current += 1; //id에 +1을 더해줌
+    }
+  }, [check]);
+
   //import button 누르면 실행되는 함수, alert 라이브러리 사용
-  const handleAlert = inputs => {
+  const handleAlert = () => {
     swal({
       title: 'Service name',
       content: 'input',
@@ -61,21 +76,13 @@ const ProjectList = () => {
 
       //값이 소문자이거나 숫자이면 값을 추가함
       if (result === lower || num) {
-        //inputs에 입력된 값으로 갱신해준다
+        //inputs에 입력된 값으로 갱신해주고
+        //check를 true로 반환
         setInputs({
           service_name: result,
         });
-
-        //user에 추가할 내용을 기재하고
-        const user = {
-          id: nextId.current,
-          service_name,
-          creation_date: today,
-        };
-        //inputData를 복사하고 user를 추가한다
-        setInputData([...inputData, user]);
-
-        nextId.current += 1; //id에 +1을 더해줌
+        setCheck(!check);
+        setCheck(true);
       } else {
         swal({
           //라이브러리라서 위치 이동이 어려워 있는 그대로 사용
