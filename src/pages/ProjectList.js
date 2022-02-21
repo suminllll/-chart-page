@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import styled from 'styled-components';
 import Title from '../components/Title';
 import { TwoButton } from '../components/Button';
@@ -40,14 +40,14 @@ const ProjectList = () => {
 
   //import 버튼을 누르면 실행되는 함수
   //해당 파일이 json 파일이면 조건부 렌더링으로 no data가 사라지고 게시판이 나타남
-  const handleCheck = e => {
+  const handleCheck = useCallback(e => {
     const values = e.target.value.includes('project_list.json');
 
     if (!values) alert('Unknown json format.');
     else setUpload(upload);
 
     if (values) setUpload(!upload);
-  };
+  }, []);
 
   //게시물을 추가함
   useEffect(() => {
@@ -125,6 +125,11 @@ const ProjectList = () => {
     });
   };
 
+  //게시물 삭제
+  const onRemove = id => {
+    setInputData(inputData.filter(del => del.id !== id));
+  };
+
   return (
     <Main>
       <Title titleText="Project list" />
@@ -142,6 +147,7 @@ const ProjectList = () => {
           data={data}
           handleAlert={handleAlert}
           inputData={inputData}
+          onRemove={onRemove}
         />
       )}
     </Main>

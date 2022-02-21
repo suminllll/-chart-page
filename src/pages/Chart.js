@@ -23,7 +23,6 @@ const Chart = () => {
   useEffect(() => {
     async function chartRequest() {
       const chart = await Highcharts.chart('request', {
-        // const chart = Highcharts.chart('request', {
         chart: {
           type: 'line',
         },
@@ -57,7 +56,6 @@ const Chart = () => {
   useEffect(() => {
     async function chartTotal() {
       const chart = await Highcharts.chart('request_total', {
-        // const chart = Highcharts.chart('request_total', {
         chart: {
           type: 'line',
         },
@@ -84,7 +82,7 @@ const Chart = () => {
       });
     }
     chartTotal();
-  }, [!upload]);
+  }, [upload]);
 
   //import 버튼을 누르면 실행되는 함수
   //해당 파일이 json 파일이면 조건부 렌더링으로 차트가 나타남

@@ -3,7 +3,6 @@ import styled from 'styled-components';
 import { OneButton } from '../components/Button';
 
 const Import = ({ data, onRemove, handleAlert, inputData }) => {
-  console.log(inputData);
   return (
     <>
       {/* 전체를 맵 돌림 */}
@@ -42,11 +41,7 @@ const Import = ({ data, onRemove, handleAlert, inputData }) => {
                         </TbodyTd>
                         <TbodyTd>{service.creation_date}</TbodyTd>
                         <TbodyTd style={{ width: '20px' }}>
-                          <TbodyBtn
-                            onClick={() => onRemove(service.service_name)}
-                          >
-                            Delete
-                          </TbodyBtn>
+                          <TbodyBtn>Delete</TbodyBtn>
                         </TbodyTd>
                       </tr>
                     );
@@ -61,7 +56,9 @@ const Import = ({ data, onRemove, handleAlert, inputData }) => {
                         </TbodyTd>
                         <TbodyTd>{user.creation_date}</TbodyTd>
                         <TbodyTd style={{ width: '20px' }}>
-                          <TbodyBtn>Delete</TbodyBtn>
+                          <TbodyBtn onClick={() => onRemove(user.id)}>
+                            Delete
+                          </TbodyBtn>
                         </TbodyTd>
                       </tr>
                     );
