@@ -15,9 +15,7 @@ const Nav = () => {
   return (
     <Wrapper>
       {/* 로고 */}
-      <LogoBox>
-        <ImgBox>{/* <Img /> */}</ImgBox>
-      </LogoBox>
+      <LogoBox></LogoBox>
       {/* 버튼 */}
       <>
         {/* changeColor가 참이 되면 스타일 컴포넌트의 조건문에서 true가 되면서 색깔이 바뀜 */}
@@ -58,15 +56,6 @@ const ImgBox = styled.div`
   width: 96.5px;
   height: 100%;
   margin-left: 15px;
-`;
-
-const Img = styled.img.attrs({
-  alt: 'logoImg',
-  src: '/images/Logo.png',
-})`
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
 `;
 
 const Category = styled.div`
