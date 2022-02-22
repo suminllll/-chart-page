@@ -1,5 +1,5 @@
 ## project list Page
-배포 사이트: <a target="_blank">https://boring-wright-b65a64.netlify.app</a>
+배포 사이트: <a target="_blank" href="https://boring-wright-b65a64.netlify.app">https://boring-wright-b65a64.netlify.app</a>
 #### Import_Button
 - 브라우저 기본 파일 탐색기 호출
 - 지정한 파일 첨부가 아니면 팝업표시
