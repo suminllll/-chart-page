@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import styled from 'styled-components';
 import Title from '../components/Title';
 import { TwoButton } from '../components/Button';
@@ -22,64 +22,68 @@ const Chart = () => {
 
   useEffect(() => {
     async function chartRequest() {
-      const chart = await Highcharts.chart('request', {
-        chart: {
-          type: 'line',
-        },
-        title: {
-          text: '',
-        },
-        yAxis: {
-          title: '',
-        },
-        yAxis: {
+      if (data && data.length > 0) {
+        const chart = await Highcharts.chart('request', {
+          chart: {
+            type: 'line',
+          },
           title: {
             text: '',
           },
-        },
-        credits: {
-          enabled: false,
-        },
-        series: [
-          {
-            name: '',
-            data: data[0].data,
+          yAxis: {
+            title: '',
           },
-        ],
-      });
+          yAxis: {
+            title: {
+              text: '',
+            },
+          },
+          credits: {
+            enabled: false,
+          },
+          series: [
+            {
+              name: '',
+              data: data[0].data,
+            },
+          ],
+        });
+      }
     }
     chartRequest();
-  }, [!upload]);
+  }, [upload]);
 
   //두번째 차트
 
   useEffect(() => {
     async function chartTotal() {
-      const chart = await Highcharts.chart('request_total', {
-        chart: {
-          type: 'line',
-        },
-        title: {
-          text: '',
-        },
-        yAxis: {
-          title: '',
-        },
-        yAxis: {
+      if (data && data.length > 0) {
+        const chart = await Highcharts.chart('request_total', {
+          chart: {
+            type: 'line',
+          },
           title: {
             text: '',
           },
-        },
-        credits: {
-          enabled: false,
-        },
-        series: [
-          {
-            name: '',
-            data: data[1].data,
+          yAxis: {
+            title: '',
           },
-        ],
-      });
+          yAxis: {
+            title: {
+              text: '',
+            },
+          },
+          credits: {
+            enabled: false,
+          },
+          series: [
+            {
+              name: '',
+              data: data[1].data,
+            },
+          ],
+        });
+      }
     }
     chartTotal();
   }, [upload]);
