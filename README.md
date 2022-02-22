@@ -29,4 +29,5 @@
 ![chartPage](https://user-images.githubusercontent.com/79704928/154635388-12cb4f24-b69e-4634-a94c-15f3b51e523e.gif)
 
 ## 최종영상
-![최종영상](https://user-images.githubusercontent.com/79704928/154963606-2d03349e-342e-4a37-b865-a7f13953d8cb.gif)
+![최종영상](https://user-images.githubusercontent.com/79704928/155137631-458bb55c-acc5-4ac6-9afd-171a13d9d45a.gif)
+
