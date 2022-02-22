@@ -1,0 +1,21 @@
+{
+  "res": [
+    {
+      "project_name": "pro1",
+      "creator": "user1",
+      "service_list": [
+        { "service_name": "svc1", "creation_date": "2022.01.01 12:31" },
+        { "service_name": "svc2", "creation_date": "2022.01.31 11:10" }
+      ]
+    },
+    {
+      "project_name": "pro2",
+      "creator": "user2",
+      "service_list": [
+        { "service_name": "svc4", "creation_date": "2022.02.01 01:10" },
+        { "service_name": "svc5", "creation_date": "2022.02.11 10:57" },
+        { "service_name": "svc6", "creation_date": "2022.02.17 03:07" }
+      ]
+    }
+  ]
+}
