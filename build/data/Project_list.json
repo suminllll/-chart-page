@@ -4,8 +4,7 @@
       "project_name": "pro1",
       "creator": "user1",
       "service_list": [
-        { "service_name": "svc1", "creation_date": "2022.01.01 12:31" },
-        { "service_name": "svc2", "creation_date": "2022.01.31 11:10" }
+        { "service_name": "svc1", "creation_date": "2022.01.01 12:31" }
       ]
     },
     {
