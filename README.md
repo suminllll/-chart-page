@@ -1,5 +1,10 @@
+
+## 배포 사이트 [![Netlify Status](https://api.netlify.com/api/v1/badges/945be37c-a642-4932-8c8a-41d02b2805d6/deploy-status)](https://app.netlify.com/sites/boring-wright-b65a64/deploys) 
+
+- https://boring-wright-b65a64.netlify.app
+- 'Project_list.json', 'Chart.json' 파일 필요
+
 ## project list Page
-배포 사이트: https://boring-wright-b65a64.netlify.app
 #### Import_Button
 - 브라우저 기본 파일 탐색기 호출
 - 지정한 파일 첨부가 아니면 팝업표시
