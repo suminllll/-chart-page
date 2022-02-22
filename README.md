@@ -4,7 +4,11 @@
 - https://boring-wright-b65a64.netlify.app
 - 'Project_list.json', 'Chart.json' 파일 필요
 
-## project list Page
+## 최종영상
+![최종영상](https://user-images.githubusercontent.com/79704928/155137631-458bb55c-acc5-4ac6-9afd-171a13d9d45a.gif)
+
+## 기능구현
+### project list Page
 #### Import_Button
 - 브라우저 기본 파일 탐색기 호출
 - 지정한 파일 첨부가 아니면 팝업표시
@@ -26,13 +30,12 @@
 
 ![download](https://user-images.githubusercontent.com/79704928/154635384-db699b78-d5e7-4333-9958-da8eed7bf556.gif)
 
-## Chart Page
+### Chart Page
 #### Import_Button
 - 브라우저 기본 파일 탐색기 호출
 - 지정한 파일 첨부가 완료되면 차트를 출력
 
 ![chartPage](https://user-images.githubusercontent.com/79704928/154635388-12cb4f24-b69e-4634-a94c-15f3b51e523e.gif)
 
-## 최종영상
-![최종영상](https://user-images.githubusercontent.com/79704928/155137631-458bb55c-acc5-4ac6-9afd-171a13d9d45a.gif)
+
 
