@@ -94,6 +94,7 @@ const Chart = () => {
     const values = e.target.value.includes('chart.json');
 
     if (values) setUpload(!upload);
+    else alert('Unknown json format.');
   };
 
   return (

@@ -87,9 +87,8 @@ const ProjectList = () => {
         swal({
           //라이브러리라서 위치 이동이 어려워 있는 그대로 사용
           title: 'Service name',
-          content: 'input',
-          buttons: ['Cancel', 'Add'],
           text: 'only lowercase letters and numbers allowed.',
+          buttons: 'confirm',
         });
       }
     });
