@@ -5,7 +5,7 @@
 - 'Project_list.json', 'Chart.json' 파일 필요
 
 ## 최종영상
-![최종영상](https://user-images.githubusercontent.com/79704928/155137631-458bb55c-acc5-4ac6-9afd-171a13d9d45a.gif)
+![최종영상](https://user-images.githubusercontent.com/79704928/156330426-00136574-3192-448e-9952-a06a127d821d.gif)
 
 ## 기능구현
 ### project list Page
